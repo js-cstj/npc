@@ -1,0 +1,34 @@
+html {
+	height: 100%;
+	font-size: 16px;
+	font-family: arial;
+}
+body {
+	height: 100%;
+	margin: 0;
+}
+#interface {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	& > header, & > footer {
+		padding: .5em 1em;
+		background-color: #EEE;
+		display: flex;
+		justify-content: space-between;
+	}
+	& > header {
+		order: -1000;
+		h1 {
+			margin: 0;
+		}
+	}
+	& > footer {
+		order: 1000;
+		font-size: smaller;
+	}
+}
+
+#app {
+	padding: 1em;
+}

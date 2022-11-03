@@ -1,0 +1,51 @@
+html {
+  height: 100%;
+  font-size: 16px;
+  font-family: arial;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#interface {
+  min-height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr auto;
+}
+
+#interface > header, #interface > footer {
+  padding: .5em 1em;
+  background-color: #EEE;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#interface > header {
+  -webkit-box-ordinal-group: -999;
+      -ms-flex-order: -1000;
+          order: -1000;
+}
+
+#interface > header h1 {
+  margin: 0;
+}
+
+#interface > footer {
+  -webkit-box-ordinal-group: 1001;
+      -ms-flex-order: 1000;
+          order: 1000;
+  font-size: smaller;
+}
+
+#app {
+  padding: 1em;
+}
+/*# sourceMappingURL=style.css.map */
