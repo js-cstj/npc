@@ -1,7 +1,7 @@
 import digrammes from "../digrammes.js";
 import Digramme from "./Digramme.js";
 import Monogramme from "./Monogramme.js";
-import Trigramme from "./Trigramme.js";
+
 export default class App {
 	static races = [
 		"Human",
@@ -16,13 +16,97 @@ export default class App {
 	];
 	static main() {
 		var app = document.getElementById("app");
-		app.appendChild(this.html_tableau());
+		var form = app.appendChild(this.html_form());
+	}
+	static html_form() {
+		var resultat = document.createElement("form");
+		resultat.addEventListener("input", e => {
+			e.preventDefault();
+			console.log("Cool!");
+		});
+		// "Nom du joueur"
+		var div = resultat.appendChild(document.createElement("div"));
+		var label = div.appendChild(document.createElement("label"));
+		label.innerHTML = "Nom du joueur";
+		var input = div.appendChild(document.createElement("input"));
+		label.htmlFor = input.name = input.id = "nom_joueur";
 
+		// "Nom du perso"
+		var div = resultat.appendChild(document.createElement("div"));
+		var label = div.appendChild(document.createElement("label"));
+		label.innerHTML = "Nom du personnage";
+		var input = div.appendChild(document.createElement("input"));
+		label.htmlFor = input.name = input.id = "nom_perso";
+		input.value = "" + this.prenomAlea() + " " + this.nomAlea() + "";
+		resultat.appendChild(this.html_races());
+		resultat.appendChild(this.html_classes());
+
+		return resultat;
+	}
+	static html_races() {
+		// "Race du perso"
+		var div = document.createElement("div");
+		var label = div.appendChild(document.createElement("label"));
+		label.innerHTML = "Race du personnage";
+		var select = div.appendChild(document.createElement("select"));
+		label.htmlFor = select.name = "race_perso";
+		this.loadJSON("https://www.dnd5eapi.co/api/races").then(races => {
+			for (let i = 0; i < races.results.length; i++) {
+				const race = races.results[i];
+				var option = select.appendChild(document.createElement("option"));
+				option.innerHTML = race.name;
+				option.value = race.index;
+				option.setAttribute("data-url", race.url);
+			}
+			var courant = this.piger(select.children);
+			courant.selected = true;
+		});
+		var description = div.appendChild(document.createElement("div"));
+		description.classList.add("description");
+		select.addEventListener("change", e => {
+			var choisi = e.currentTarget.selectedOptions[0];
+			var url = choisi.dataset.url;
+			this.loadJSON("https://www.dnd5eapi.co" + url + "").then(race => {
+				description.innerHTML = race.size_description;
+			});
+		});
+		return div;
+	}
+	static html_classes() {
+		// "Classe du perso"
+		var div = document.createElement("div");
+		var label = div.appendChild(document.createElement("label"));
+		label.innerHTML = "Classe du personnage";
+		var select = div.appendChild(document.createElement("select"));
+		label.htmlFor = select.name = "class_perso";
+		this.loadJSON("https://www.dnd5eapi.co/api/classes").then(classes => {
+			for (let i = 0; i < classes.results.length; i++) {
+				var classe = classes.results[i];
+				var option = select.appendChild(document.createElement("option"));
+				option.innerHTML = classe.name;
+				option.value = classe.index;
+				option.setAttribute("data-url", classe.url);
+			}
+			var courant = this.piger(select.children);
+			courant.selected = true;
+		});
+		return div;
+	}
+
+	static main0() {
+		var app = document.getElementById("app");
+		// app.appendChild(this.html_tableau());
+		window.addEventListener("click", e => {
+			var p = app.appendChild(document.createElement("p"));
+			this.loadJSON("https://api.chucknorris.io/jokes/random").then(blague => {
+				p.innerHTML = blague.value;
+			})
+		})
 		var persos = [];
 		for (let i = 0; i < 100; i += 1) {
 			persos.push(this.persoAlea());
 		}
-		console.log(persos);
+		// console.log(persos);
 	}
 	static html_tableau() {
 		var resultat;
