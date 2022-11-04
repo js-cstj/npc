@@ -1,4 +1,4 @@
-import digrammes from "../digrammes.js";
+import digrammes from "../donnees/digrammes.js";
 import Digramme from "./Digramme.js";
 import Monogramme from "./Monogramme.js";
 

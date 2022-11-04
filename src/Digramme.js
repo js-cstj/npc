@@ -80,7 +80,7 @@ export default class Digramme {
         return this.pigerChaine(longueur - 1, chaine);
     }
     static init() {
-        return App.loadJSON("digrammes.json").then(data => {
+        return App.loadJSON("donnees/digrammes.json").then(data => {
             return this.compilerFrequences(data);
         });
     }
