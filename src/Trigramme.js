@@ -69,7 +69,7 @@ export default class Trigramme {
         return this.pigerChaine(longueur - 1, chaine);
     }
     static init() {
-        return App.loadJSON("donnees/trigrammes-mini.json").then(data => {
+        return App.chargerJSON("donnees/trigrammes-mini.json").then(data => {
             return this.compilerFrequences(data);
         });
     }

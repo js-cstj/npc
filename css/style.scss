@@ -32,3 +32,28 @@ body {
 #app {
 	padding: 1em;
 }
+form {
+	display: grid;
+	gap: .5em;
+	fieldset {
+		display: grid;
+		gap: .5em;
+		padding: 0.5em;
+		border: 1px solid black;
+	}
+	.description {
+		grid-column: 1 / -1;
+	}
+	> div, > fieldset > div {
+		display: grid;
+		grid-template-columns: 20ch 30ch auto;
+		gap: 1ch;
+		align-items: center;
+	}
+	label {
+		flex: 0 0 20ch;
+	}
+	label + * {
+		flex: 0 0 30ch;
+	}
+}
