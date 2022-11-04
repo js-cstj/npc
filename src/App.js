@@ -1,6 +1,11 @@
 import digrammes from "../donnees/digrammes.js";
+import Classe from "./Classe.js";
 import Digramme from "./Digramme.js";
+import Equipement from "./Equipement.js";
+import Feat from "./Feat.js";
 import Monogramme from "./Monogramme.js";
+import Race from "./Race.js";
+import Trait from "./Trait.js";
 
 export default class App {
 	static races = [
@@ -14,6 +19,8 @@ export default class App {
 		"Gnome",
 		"Dragonborn",
 	];
+	static api = "https://www.dnd5eapi.co";
+	
 	static main() {
 		var app = document.getElementById("app");
 		var form = app.appendChild(this.html_form());
@@ -24,71 +31,42 @@ export default class App {
 			e.preventDefault();
 			console.log("Cool!");
 		});
+		
+		resultat.appendChild(this.html_nomJoueur());
+		resultat.appendChild(this.html_nomPerso());
+		resultat.appendChild(Race.html_races());
+		resultat.appendChild(Classe.html_classes());
+		resultat.appendChild(Equipement.html_categories());
+		resultat.appendChild(Trait.html_traits());
+		resultat.appendChild(Feat.html_feats());
+
+		
+		return resultat;
+	}
+	
+	static html_nomJoueur() {
 		// "Nom du joueur"
-		var div = resultat.appendChild(document.createElement("div"));
+		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
 		label.innerHTML = "Nom du joueur";
 		var input = div.appendChild(document.createElement("input"));
 		label.htmlFor = input.name = input.id = "nom_joueur";
-
+		
+		return div;
+	}
+	static html_nomPerso() {
 		// "Nom du perso"
-		var div = resultat.appendChild(document.createElement("div"));
+		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
 		label.innerHTML = "Nom du personnage";
 		var input = div.appendChild(document.createElement("input"));
 		label.htmlFor = input.name = input.id = "nom_perso";
 		input.value = "" + this.prenomAlea() + " " + this.nomAlea() + "";
-		resultat.appendChild(this.html_races());
-		resultat.appendChild(this.html_classes());
-
-		return resultat;
-	}
-	static html_races() {
-		// "Race du perso"
-		var div = document.createElement("div");
-		var label = div.appendChild(document.createElement("label"));
-		label.innerHTML = "Race du personnage";
-		var select = div.appendChild(document.createElement("select"));
-		label.htmlFor = select.name = "race_perso";
-		this.loadJSON("https://www.dnd5eapi.co/api/races").then(races => {
-			for (let i = 0; i < races.results.length; i++) {
-				const race = races.results[i];
-				var option = select.appendChild(document.createElement("option"));
-				option.innerHTML = race.name;
-				option.value = race.index;
-				option.setAttribute("data-url", race.url);
-			}
-			var courant = this.piger(select.children);
-			courant.selected = true;
-		});
-		var description = div.appendChild(document.createElement("div"));
-		description.classList.add("description");
-		select.addEventListener("change", e => {
-			var choisi = e.currentTarget.selectedOptions[0];
-			var url = choisi.dataset.url;
-			this.loadJSON("https://www.dnd5eapi.co" + url + "").then(race => {
-				description.innerHTML = race.size_description;
-			});
-		});
-		return div;
-	}
-	static html_classes() {
-		// "Classe du perso"
-		var div = document.createElement("div");
-		var label = div.appendChild(document.createElement("label"));
-		label.innerHTML = "Classe du personnage";
-		var select = div.appendChild(document.createElement("select"));
-		label.htmlFor = select.name = "class_perso";
-		this.loadJSON("https://www.dnd5eapi.co/api/classes").then(classes => {
-			for (let i = 0; i < classes.results.length; i++) {
-				var classe = classes.results[i];
-				var option = select.appendChild(document.createElement("option"));
-				option.innerHTML = classe.name;
-				option.value = classe.index;
-				option.setAttribute("data-url", classe.url);
-			}
-			var courant = this.piger(select.children);
-			courant.selected = true;
+		var button = div.appendChild(document.createElement("img"));
+		button.src = "img/de.svg";
+		button.title = "Regénérer";
+		button.addEventListener("click", e => {
+			input.value = "" + this.prenomAlea() + " " + this.nomAlea() + "";
 		});
 		return div;
 	}
@@ -98,7 +76,7 @@ export default class App {
 		// app.appendChild(this.html_tableau());
 		window.addEventListener("click", e => {
 			var p = app.appendChild(document.createElement("p"));
-			this.loadJSON("https://api.chucknorris.io/jokes/random").then(blague => {
+			this.chargerJSON("https://api.chucknorris.io/jokes/random").then(blague => {
 				p.innerHTML = blague.value;
 			})
 		})
@@ -207,7 +185,7 @@ export default class App {
 	static statAlea() {
 		return this.range(10, 20, 2);
 	}
-	static loadJSON(fic) {
+	static chargerJSON(fic) {
 		return new Promise(resolve => {
 			var xhr = new XMLHttpRequest();
 			xhr.open("GET", fic);

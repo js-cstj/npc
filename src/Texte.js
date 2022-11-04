@@ -11,7 +11,7 @@ export default class Texte {
         });
         xhr.send();
     }
-    static loadText(fichier) {
+    static chargerText(fichier) {
         return new Promise(resolve => {
             var xhr = new XMLHttpRequest();
             xhr.open("get", fichier);
@@ -21,7 +21,7 @@ export default class Texte {
             xhr.send();
         });
     }
-    static loadHTML(fichier) {
+    static chargerHTML(fichier) {
         return new Promise(resolve => {
             var xhr = new XMLHttpRequest();
             xhr.open("get", fichier);
@@ -32,7 +32,7 @@ export default class Texte {
             xhr.send();
         });
     }
-    static loadJSON(fichier) {
+    static chargerJSON(fichier) {
         return new Promise(resolve => {
             var xhr = new XMLHttpRequest();
             xhr.open("get", fichier);
