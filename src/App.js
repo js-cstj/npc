@@ -3,6 +3,7 @@ import Classe from "./Classe.js";
 import Digramme from "./Digramme.js";
 import Equipement from "./Equipement.js";
 import Feat from "./Feat.js";
+import MagicSchool from "./MagicSchool.js";
 import Monogramme from "./Monogramme.js";
 import Race from "./Race.js";
 import Trait from "./Trait.js";
@@ -23,6 +24,7 @@ export default class App {
 	
 	static main() {
 		var app = document.getElementById("app");
+		MagicSchool.main();
 		var form = app.appendChild(this.html_form());
 	}
 	static html_form() {
@@ -39,6 +41,7 @@ export default class App {
 		resultat.appendChild(Equipement.html_categories());
 		resultat.appendChild(Trait.html_traits());
 		resultat.appendChild(Feat.html_feats());
+		resultat.appendChild(MagicSchool.html_ecoles());
 
 		
 		return resultat;
