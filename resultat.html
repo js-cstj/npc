@@ -1,0 +1,223 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Application Javascript</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="module">
+        import App from "./src/App.js";
+    </script>
+</head>
+
+<body>
+    <div id="interface">
+        <header><img src="img/npc.svg" alt="" style="height:100px;"></header>
+        <footer><span>© Web 3 : Dynamique</span><strong>Application Javascript</strong></footer>
+        <div class="body" id="app">
+            <form>
+                <div><label for="nom_joueur">Nom du joueur</label><input id="nom_joueur" name="nom_joueur"></div>
+                <div><label for="nom_perso">Nom du personnage</label><input id="nom_perso" name="nom_perso"><img
+                        src="img/de.svg" title="Regénérer"></div>
+                <fieldset>
+                    <div><label for="class_perso">Race du personnage</label><select name="class_perso">
+                            <option value="dragonborn" data-url="/api/races/dragonborn">Dragonborn</option>
+                            <option value="dwarf" data-url="/api/races/dwarf">Dwarf</option>
+                            <option value="elf" data-url="/api/races/elf">Elf</option>
+                            <option value="gnome" data-url="/api/races/gnome">Gnome</option>
+                            <option value="half-elf" data-url="/api/races/half-elf">Half-Elf</option>
+                            <option value="half-orc" data-url="/api/races/half-orc">Half-Orc</option>
+                            <option value="halfling" data-url="/api/races/halfling">Halfling</option>
+                            <option value="human" data-url="/api/races/human">Human</option>
+                            <option value="tiefling" data-url="/api/races/tiefling">Tiefling</option>
+                        </select>
+                        <div class="description"></div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div><label for="class_perso">Classe du personnage</label><select name="class_perso">
+                            <option value="barbarian" data-url="/api/classes/barbarian">Barbarian</option>
+                            <option value="bard" data-url="/api/classes/bard">Bard</option>
+                            <option value="cleric" data-url="/api/classes/cleric">Cleric</option>
+                            <option value="druid" data-url="/api/classes/druid">Druid</option>
+                            <option value="fighter" data-url="/api/classes/fighter">Fighter</option>
+                            <option value="monk" data-url="/api/classes/monk">Monk</option>
+                            <option value="paladin" data-url="/api/classes/paladin">Paladin</option>
+                            <option value="ranger" data-url="/api/classes/ranger">Ranger</option>
+                            <option value="rogue" data-url="/api/classes/rogue">Rogue</option>
+                            <option value="sorcerer" data-url="/api/classes/sorcerer">Sorcerer</option>
+                            <option value="warlock" data-url="/api/classes/warlock">Warlock</option>
+                            <option value="wizard" data-url="/api/classes/wizard">Wizard</option>
+                        </select></div>
+                </fieldset>
+                <fieldset>
+                    <div><label for="categorie_equipement">Catégorie d'équipement</label><select
+                            id="categorie_equipement" name="categorie_equipement">
+                            <option>Choisissez une catégorie...</option>
+                            <option value="adventuring-gear" data-url="/api/equipment-categories/adventuring-gear">
+                                Adventuring Gear</option>
+                            <option value="ammunition" data-url="/api/equipment-categories/ammunition">Ammunition
+                            </option>
+                            <option value="arcane-foci" data-url="/api/equipment-categories/arcane-foci">Arcane Foci
+                            </option>
+                            <option value="armor" data-url="/api/equipment-categories/armor">Armor</option>
+                            <option value="artisans-tools" data-url="/api/equipment-categories/artisans-tools">Artisan's
+                                Tools</option>
+                            <option value="druidic-foci" data-url="/api/equipment-categories/druidic-foci">Druidic Foci
+                            </option>
+                            <option value="equipment-packs" data-url="/api/equipment-categories/equipment-packs">
+                                Equipment Packs</option>
+                            <option value="gaming-sets" data-url="/api/equipment-categories/gaming-sets">Gaming Sets
+                            </option>
+                            <option value="heavy-armor" data-url="/api/equipment-categories/heavy-armor">Heavy Armor
+                            </option>
+                            <option value="holy-symbols" data-url="/api/equipment-categories/holy-symbols">Holy Symbols
+                            </option>
+                            <option value="kits" data-url="/api/equipment-categories/kits">Kits</option>
+                            <option value="land-vehicles" data-url="/api/equipment-categories/land-vehicles">Land
+                                Vehicles</option>
+                            <option value="light-armor" data-url="/api/equipment-categories/light-armor">Light Armor
+                            </option>
+                            <option value="martial-melee-weapons"
+                                data-url="/api/equipment-categories/martial-melee-weapons">Martial Melee Weapons
+                            </option>
+                            <option value="martial-ranged-weapons"
+                                data-url="/api/equipment-categories/martial-ranged-weapons">Martial Ranged Weapons
+                            </option>
+                            <option value="martial-weapons" data-url="/api/equipment-categories/martial-weapons">Martial
+                                Weapons</option>
+                            <option value="medium-armor" data-url="/api/equipment-categories/medium-armor">Medium Armor
+                            </option>
+                            <option value="melee-weapons" data-url="/api/equipment-categories/melee-weapons">Melee
+                                Weapons</option>
+                            <option value="mounts-and-other-animals"
+                                data-url="/api/equipment-categories/mounts-and-other-animals">Mounts and Other Animals
+                            </option>
+                            <option value="mounts-and-vehicles"
+                                data-url="/api/equipment-categories/mounts-and-vehicles">Mounts and Vehicles</option>
+                            <option value="musical-instruments"
+                                data-url="/api/equipment-categories/musical-instruments">Musical Instruments</option>
+                            <option value="other-tools" data-url="/api/equipment-categories/other-tools">Other Tools
+                            </option>
+                            <option value="potion" data-url="/api/equipment-categories/potion">Potion</option>
+                            <option value="ranged-weapons" data-url="/api/equipment-categories/ranged-weapons">Ranged
+                                Weapons</option>
+                            <option value="ring" data-url="/api/equipment-categories/ring">Ring</option>
+                            <option value="rod" data-url="/api/equipment-categories/rod">Rod</option>
+                            <option value="scroll" data-url="/api/equipment-categories/scroll">Scroll</option>
+                            <option value="shields" data-url="/api/equipment-categories/shields">Shields</option>
+                            <option value="simple-melee-weapons"
+                                data-url="/api/equipment-categories/simple-melee-weapons">Simple Melee Weapons</option>
+                            <option value="simple-ranged-weapons"
+                                data-url="/api/equipment-categories/simple-ranged-weapons">Simple Ranged Weapons
+                            </option>
+                            <option value="simple-weapons" data-url="/api/equipment-categories/simple-weapons">Simple
+                                Weapons</option>
+                            <option value="staff" data-url="/api/equipment-categories/staff">Staff</option>
+                            <option value="standard-gear" data-url="/api/equipment-categories/standard-gear">Standard
+                                Gear</option>
+                            <option value="tack-harness-and-drawn-vehicles"
+                                data-url="/api/equipment-categories/tack-harness-and-drawn-vehicles">Tack, Harness, and
+                                Drawn Vehicles</option>
+                            <option value="tools" data-url="/api/equipment-categories/tools">Tools</option>
+                            <option value="wand" data-url="/api/equipment-categories/wand">Wand</option>
+                            <option value="waterborne-vehicles"
+                                data-url="/api/equipment-categories/waterborne-vehicles">Waterborne Vehicles</option>
+                            <option value="weapon" data-url="/api/equipment-categories/weapon">Weapon</option>
+                            <option value="wondrous-items" data-url="/api/equipment-categories/wondrous-items">Wondrous
+                                Items</option>
+                        </select></div>
+                </fieldset>
+                <fieldset>
+                    <div><label for="traits">Traits</label><select id="traits" name="traits">
+                            <option>Choisissez un trait...</option>
+                            <option value="artificers-lore" data-url="/api/traits/artificers-lore">Artificer's Lore
+                            </option>
+                            <option value="brave" data-url="/api/traits/brave">Brave</option>
+                            <option value="breath-weapon" data-url="/api/traits/breath-weapon">Breath Weapon</option>
+                            <option value="damage-resistance" data-url="/api/traits/damage-resistance">Damage Resistance
+                            </option>
+                            <option value="darkvision" data-url="/api/traits/darkvision">Darkvision</option>
+                            <option value="draconic-ancestry" data-url="/api/traits/draconic-ancestry">Draconic Ancestry
+                            </option>
+                            <option value="draconic-ancestry-black" data-url="/api/traits/draconic-ancestry-black">
+                                Draconic Ancestry (Black)</option>
+                            <option value="draconic-ancestry-blue" data-url="/api/traits/draconic-ancestry-blue">
+                                Draconic Ancestry (Blue)</option>
+                            <option value="draconic-ancestry-brass" data-url="/api/traits/draconic-ancestry-brass">
+                                Draconic Ancestry (Brass)</option>
+                            <option value="draconic-ancestry-bronze" data-url="/api/traits/draconic-ancestry-bronze">
+                                Draconic Ancestry (Bronze)</option>
+                            <option value="draconic-ancestry-copper" data-url="/api/traits/draconic-ancestry-copper">
+                                Draconic Ancestry (Copper)</option>
+                            <option value="draconic-ancestry-gold" data-url="/api/traits/draconic-ancestry-gold">
+                                Draconic Ancestry (Gold)</option>
+                            <option value="draconic-ancestry-green" data-url="/api/traits/draconic-ancestry-green">
+                                Draconic Ancestry (Green)</option>
+                            <option value="draconic-ancestry-red" data-url="/api/traits/draconic-ancestry-red">Draconic
+                                Ancestry (Red)</option>
+                            <option value="draconic-ancestry-silver" data-url="/api/traits/draconic-ancestry-silver">
+                                Draconic Ancestry (Silver)</option>
+                            <option value="draconic-ancestry-white" data-url="/api/traits/draconic-ancestry-white">
+                                Draconic Ancestry (White)</option>
+                            <option value="dwarven-combat-training" data-url="/api/traits/dwarven-combat-training">
+                                Dwarven Combat Training</option>
+                            <option value="dwarven-resilience" data-url="/api/traits/dwarven-resilience">Dwarven
+                                Resilience</option>
+                            <option value="dwarven-toughness" data-url="/api/traits/dwarven-toughness">Dwarven Toughness
+                            </option>
+                            <option value="elf-weapon-training" data-url="/api/traits/elf-weapon-training">Elf Weapon
+                                Training</option>
+                            <option value="extra-language" data-url="/api/traits/extra-language">Extra Language</option>
+                            <option value="fey-ancestry" data-url="/api/traits/fey-ancestry">Fey Ancestry</option>
+                            <option value="gnome-cunning" data-url="/api/traits/gnome-cunning">Gnome Cunning</option>
+                            <option value="halfling-nimbleness" data-url="/api/traits/halfling-nimbleness">Halfling
+                                Nimbleness</option>
+                            <option value="hellish-resistance" data-url="/api/traits/hellish-resistance">Hellish
+                                Resistance</option>
+                            <option value="high-elf-cantrip" data-url="/api/traits/high-elf-cantrip">High Elf Cantrip
+                            </option>
+                            <option value="infernal-legacy" data-url="/api/traits/infernal-legacy">Infernal Legacy
+                            </option>
+                            <option value="keen-senses" data-url="/api/traits/keen-senses">Keen Senses</option>
+                            <option value="lucky" data-url="/api/traits/lucky">Lucky</option>
+                            <option value="menacing" data-url="/api/traits/menacing">Menacing</option>
+                            <option value="naturally-stealthy" data-url="/api/traits/naturally-stealthy">Naturally
+                                Stealthy</option>
+                            <option value="relentless-endurance" data-url="/api/traits/relentless-endurance">Relentless
+                                Endurance</option>
+                            <option value="savage-attacks" data-url="/api/traits/savage-attacks">Savage Attacks</option>
+                            <option value="skill-versatility" data-url="/api/traits/skill-versatility">Skill Versatility
+                            </option>
+                            <option value="stonecunning" data-url="/api/traits/stonecunning">Stonecunning</option>
+                            <option value="tinker" data-url="/api/traits/tinker">Tinker</option>
+                            <option value="tool-proficiency" data-url="/api/traits/tool-proficiency">Tool Proficiency
+                            </option>
+                            <option value="trance" data-url="/api/traits/trance">Trance</option>
+                        </select></div>
+                </fieldset>
+                <fieldset>
+                    <div><label for="feats">Feats</label><select id="feats" name="feats">
+                            <option>Choisissez un feat...</option>
+                            <option value="grappler" data-url="/api/feats/grappler">Grappler</option>
+                        </select></div>
+                </fieldset>
+                <fieldset>
+                    <div><label for="magic_school">École de magie</label><select id="magic_school" name="magic_school">
+                            <option>Sélectionnez une école de magie...</option>
+                            <option value="abjuration" data-url="/api/magic-schools/abjuration">Abjuration</option>
+                            <option value="conjuration" data-url="/api/magic-schools/conjuration">Conjuration</option>
+                            <option value="divination" data-url="/api/magic-schools/divination">Divination</option>
+                            <option value="enchantment" data-url="/api/magic-schools/enchantment">Enchantment</option>
+                            <option value="evocation" data-url="/api/magic-schools/evocation">Evocation</option>
+                            <option value="illusion" data-url="/api/magic-schools/illusion">Illusion</option>
+                            <option value="necromancy" data-url="/api/magic-schools/necromancy">Necromancy</option>
+                            <option value="transmutation" data-url="/api/magic-schools/transmutation">Transmutation
+                            </option>
+                        </select></div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
